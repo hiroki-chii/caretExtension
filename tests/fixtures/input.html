@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<title>Caret Mode local test</title>
+<style>
+  body { font: 18px system-ui; max-width: 700px; margin: 60px auto; padding: 20px; }
+  input, textarea, [contenteditable] { box-sizing: border-box; width: 100%; font: inherit; padding: 14px; margin: 8px 0 24px; border: 1px solid #888; }
+  [contenteditable] { min-height: 90px; }
+  #status { color: #444; }
+</style>
+<h1>Caret Mode local test</h1>
+<p>Chromeのキャレット・IME状態を検証するローカルページです。入力内容は送信・保存しません。</p>
+<label>単一行 input<input id="single" autocomplete="off"></label>
+<label>複数行 textarea<textarea id="multi" rows="3"></textarea></label>
+<label>リッチテキスト contenteditable<div id="rich" contenteditable="true" role="textbox" aria-label="リッチテキスト入力欄"></div></label>
+<p id="status">IME composition: inactive</p>
+<script>
+  document.addEventListener('compositionstart', () => { document.querySelector('#status').textContent = 'IME composition: active'; });
+  document.addEventListener('compositionend', () => { document.querySelector('#status').textContent = 'IME composition: inactive'; });
+</script>
+</html>
